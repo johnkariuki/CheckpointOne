@@ -38,7 +38,7 @@ class UrbanWordsCRUD
      * @param string $desc
      * @param string $sentence
      * @return bool
-     * @throws UrbanWordException
+     * @throws \John\Cp\UrbanWordException
      */
 
     public function addWord($slang = "", $desc = "", $sentence = "")
@@ -70,9 +70,44 @@ class UrbanWordsCRUD
         }
     }
 
-    public function readWord()
+    /**
+     * @param string $slang
+     * @return bool
+     * @throws \John\Cp\UrbanWordException
+     */
+    public function readWord($slang = "")
     {
+        $this->slang = $slang;
 
+        //if it doesn't throw exception
+        //check array for the key word,
+        //if it exists return it
+        //else return false
+
+        $foundWord = [
+            "success" => false,
+            "key" => null
+        ];
+
+        if(!empty($this->slang)) {
+            foreach ($this->words as $urbanWordKey => $urbanWord) {
+                if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
+
+                    $foundWord["success"] = true;
+                    $foundWord["key"] = $urbanWordKey;
+
+                    break;
+                }
+            }
+        } else {
+            throw new UrbanWordException('Urban word omitted.');
+        }
+
+        if ($foundWord["success"]) {
+            return $this->words[$foundWord["key"]];
+        } else {
+            return false;
+        }
     }
 
     public function updateWord()
@@ -80,9 +115,42 @@ class UrbanWordsCRUD
 
     }
 
-    public function deleteWord()
+    public function deleteWord($slang = "")
     {
+        $this->slang = $slang;
 
+        //if it doesn't throw exception
+        //check array for the key word,
+        //if it exists return it
+        //else return false
+
+        $foundWord = [
+            "success" => false,
+            "key" => null,
+            "urbanWord" => []
+        ];
+
+        if(!empty($this->slang)) {
+            foreach ($this->words as $urbanWordKey => $urbanWord) {
+                if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
+
+                    $foundWord["success"] = true;
+                    $foundWord["key"] = $urbanWordKey;
+
+                    break;
+                }
+            }
+        } else {
+            throw new UrbanWordException('Urban word omitted.');
+        }
+
+        if ($foundWord["success"]) {
+
+            unset($this->words[$foundWord["key"]]);
+            return $foundWord["urbanWord"];
+        } else {
+            return false;
+        }
     }
 
 }
