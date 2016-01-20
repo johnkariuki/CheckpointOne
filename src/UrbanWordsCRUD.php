@@ -25,6 +25,7 @@ class UrbanWordsCRUD
     }
 
     /**
+     * return Urban array of waords from John/Cp/UrbanWords
      * @return array
      */
 
@@ -52,7 +53,7 @@ class UrbanWordsCRUD
             foreach($this->words as $urbanWord) {
 
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
-                    //throw exception
+
                     throw new UrbanWordException("Urban word already exists.");
                 }
             }
@@ -65,7 +66,6 @@ class UrbanWordsCRUD
 
             return true;
         } else {
-            //throw exception
             throw new UrbanWordException("Urban word detail omitted.");
         }
     }
@@ -75,6 +75,7 @@ class UrbanWordsCRUD
      * @return bool
      * @throws \John\Cp\UrbanWordException
      */
+
     public function readWord($slang = "")
     {
         $this->slang = $slang;
@@ -110,11 +111,42 @@ class UrbanWordsCRUD
         }
     }
 
-    public function updateWord()
+    /**
+     * @param string $slang
+     * @param string $slangUpdate
+     * @param string $descUpdate
+     * @param string $sentenceUpdate
+     * @return mixed
+     * @throws \John\Cp\UrbanWordException
+     */
+    public function updateWord($slang = "", $slangUpdate = "", $descUpdate = "", $sentenceUpdate = "")
     {
+        if (!empty($slangUpdate) && !empty($descUpdate) && !empty($sentenceUpdate)) {
+            $this->slang = $slang;
+
+            $key = $this->readWord($this->slang);
+
+            if ($key) {
+                $this->words[$key]["slang"] = $slangUpdate;
+                $this->words[$key]["description"] = $descUpdate;
+                $this->words[$key]["sentence-update"] = $sentenceUpdate;
+
+                return $this->words[$key];
+            } else {
+                throw new UrbanWordException("Slang word not found.");
+            }
+        } else {
+            throw new UrbanWordException("Urban word details omitted.");
+        }
+
 
     }
 
+    /**
+     * @param string $slang
+     * @return bool
+     * @throws \John\Cp\UrbanWordException
+     */
     public function deleteWord($slang = "")
     {
         $this->slang = $slang;
@@ -154,5 +186,3 @@ class UrbanWordsCRUD
     }
 
 }
-
-$x = new UrbanWordsCRUD();

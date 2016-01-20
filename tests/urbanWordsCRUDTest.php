@@ -11,6 +11,10 @@ namespace John\Cp\Test;
 use John\Cp\UrbanWordsCRUD;
 use John\Cp\UrbanWordException;
 
+/**
+ * Class urbanWordsCRUDTest
+ * @package John\Cp\Test
+ */
 class urbanWordsCRUDTest extends \PHPUnit_Framework_TestCase
 {
     public function testFetchArray()
@@ -25,7 +29,6 @@ class urbanWordsCRUDTest extends \PHPUnit_Framework_TestCase
         $urbanWords = new UrbanWordsCRUD();
         $this->assertTrue($urbanWords->addWord("bae", "endearing term for lover", "I need a Bae."));
 
-       // $this->assertFalse($urbanWords->addWord("Tight", "When someone performs an awesome task", "Prosper has finished the curriculum, Tight."));
     }
 
     /**
@@ -51,6 +54,9 @@ class urbanWordsCRUDTest extends \PHPUnit_Framework_TestCase
         $urbanWords->addWord("Tight", "When someone performs an awesome task", "Prosper has finished the curriculum, Tight.");
     }
 
+    /**
+     * @throws UrbanWordException
+     */
     public function testReadUrbanWord()
     {
         $urbanWords = new UrbanWordsCRUD();
@@ -85,6 +91,9 @@ class urbanWordsCRUDTest extends \PHPUnit_Framework_TestCase
         $urbanWords->readWord();
     }
 
+    /**
+     * @throws UrbanWordException
+     */
     public function testDeleteWord()
     {
         $urbanWords = new UrbanWordsCRUD();
@@ -99,6 +108,7 @@ class urbanWordsCRUDTest extends \PHPUnit_Framework_TestCase
         //delete 'bae'
         $this->assertTrue(is_array($urbanWords->deleteWord('bae')));
         $this->assertEquals(3, count($urbanWords->getWords()));
+        $this->assertNotContains('bae', $urbanWords->getWords());
     }
 
     /**
@@ -110,4 +120,40 @@ class urbanWordsCRUDTest extends \PHPUnit_Framework_TestCase
         $urbanWords = new UrbanWordsCRUD();
         $urbanWords->deleteWord();
     }
+
+    /**
+     * @throws UrbanWordException
+     */
+    public function UpdateDetails()
+    {
+        $urbanWords = new UrbanWordsCRUD();
+        $update = $urbanWords->updateWord("Bae", "Hella", "Very or Really", "I am Hella tired today.");
+
+        $this->assertTrue(is_array($update));
+        $this->assertArrayHasKey('slang', $update);
+        $this->assertArrayHasKey('description', $update);
+        $this->assertArrayHasKey('sample-sentence', $update);
+        $this->assertContains('Hella', $update);
+    }
+
+    /**
+     * @expectedException \John\Cp\UrbanWordException
+     * @expectedExceptionMessage Urban word details omitted.
+     */
+    public function testEmptyUpdateDetails()
+    {
+        $urbanWords = new UrbanWordsCRUD();
+        $urbanWords->updateWord();
+    }
+
+    /**
+     * @expectedException \John\Cp\UrbanWordException
+     * @expectedExceptionMessage Slang word not found.
+     */
+    public function testUpdateNonExistentUrbanWord()
+    {
+        $urbanWords = new UrbanWordsCRUD();
+        $urbanWords->updateWord("randomStr", "DFgdfgdf", "DFgfdgf", "DFgdfgf");
+    }
+
 }
