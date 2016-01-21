@@ -6,7 +6,7 @@
  * Time: 10:06
  */
 
-namespace John\Cp;
+namespace John\Cp\Test;
 use John\Cp\UrbanWords;
 
 class UrbanWordsTest extends \PHPUnit_Framework_TestCase
