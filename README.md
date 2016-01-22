@@ -5,22 +5,22 @@ Andela Checkpoint 1. An urban words dictionary, Urban Word CRUD and Ranking Syst
 
 ## Installation
 Clone the repository into your projects folder
-
+```
 git clone git@github.com:andela-jkariuki/CheckpointOne.git
-
+```
 Change directory to CheckpointOne
-
+```
 cd CheckpointOne
-
+```
 Install packages using composer
-
+```
 composer install
-
+```
 ## Tests
 
 Run the phpunit command
-
+```
 phpunit
-
+```
 
 
