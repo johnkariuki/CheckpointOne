@@ -1,9 +1,12 @@
 <?php
 namespace John\Cp;
-
+/**
+ * Class UrbanWords
+ * @package John\Cp
+ */
 class UrbanWords
 {
-	public static $data = array(
+	public static $data = [
 		[
             "slang" => "Tight",
             "description" => "When someone performs an awesome task",
@@ -19,5 +22,5 @@ class UrbanWords
             "description" => "State of being in full party mode.",
             "sample-sentence" => "Yo were you at John's party? it was turnt!."
         ]
-	);
+	];
 }

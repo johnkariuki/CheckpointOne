@@ -9,6 +9,10 @@
 namespace John\Cp\Test;
 use John\Cp\UrbanWords;
 
+/**
+ * Class UrbanWordsTest
+ * @package John\Cp\Test
+ */
 class UrbanWordsTest extends \PHPUnit_Framework_TestCase
 {
     public function testArray()

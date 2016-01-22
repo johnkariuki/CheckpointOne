@@ -8,8 +8,12 @@
 
 namespace John\Cp\Test;
 
-use John\Cp\wordRanker;
+use John\Cp\WordRanker;
 
+/**
+ * Class wordRankerTest
+ * @package John\Cp\Test
+ */
 class wordRankerTest extends \PHPUnit_Framework_TestCase
 {
     /**

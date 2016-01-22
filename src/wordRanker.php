@@ -3,28 +3,25 @@
  * Created by PhpStorm.
  * User: johnkariuki
  * Date: 21/01/2016
- * Time: 22:26
+ * Time: 22:26.
  */
-
 namespace John\Cp;
-use John\Cp\UrbanWordException;
 
 /**
- * Class wordRanker
- * @package John\Cp
+ * Class wordRanker.
  */
-class wordRanker
+class WordRanker
 {
     /**
      * @var string
-     */
-    private $sentence;
+     */private $sentence;
 
     /**
      * wordRanker constructor.
+     *
      * @param string $sentence
      */
-    public function __construct($sentence = "")
+    public function __construct($sentence = '')
     {
         $this->sentence = $sentence;
     }
@@ -39,19 +36,19 @@ class wordRanker
 
     /**
      * @return array
+     *
      * @throws \John\Cp\UrbanWordException
      */
-
     public function ranker()
     {
-        if(!empty($this->sentence)) {
+        if (!empty($this->sentence)) {
             //split sentence
-            //consider newline and newtabs
-            $wordsArray =  preg_split('/\s+/', $this->sentence);
+            //consider newline and new tab
+            $wordsArray = preg_split('/\s+/', $this->sentence);
             $rankedArray = [];
 
-            foreach($wordsArray as $word) {
-                if(array_key_exists($word, $rankedArray)) {
+            foreach ($wordsArray as $word) {
+                if (array_key_exists($word, $rankedArray)) {
                     //word exists in array
                     $rankedArray[$word] += 1;
                 } else {
@@ -59,13 +56,13 @@ class wordRanker
                 }
             }
 
-            if(arsort($rankedArray)) {
+            if (arsort($rankedArray)) {
                 return $rankedArray;
             }
 
-            throw new UrbanWordException("Sentence is empty.");
+            throw new UrbanWordException('Sentence is empty.');
         }
 
-        throw new UrbanWordException("Sentence is empty.");
+        throw new UrbanWordException('Sentence is empty.');
     }
 }

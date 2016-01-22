@@ -25,7 +25,7 @@ class UrbanWordsCRUD
     }
 
     /**
-     * return Urban array of waords from John/Cp/UrbanWords
+     * return Urban array of words from John/Cp/UrbanWords
      * @return array
      */
 
