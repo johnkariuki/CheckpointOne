@@ -1,11 +1,15 @@
 <?php
 namespace John\Cp;
 /**
- * Class UrbanWords
+ * class with a static array that contains Urban Words
+ * Class UrbanWordsDataStore
  * @package John\Cp
  */
-class UrbanWords
+class UrbanWordsDataStore
 {
+    /**
+     * @var array
+     */
 	public static $data = [
 		[
             "slang" => "Tight",
