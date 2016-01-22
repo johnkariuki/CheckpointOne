@@ -8,20 +8,21 @@
 
 namespace John\Cp\Test;
 
-use John\Cp\WordRanker;
+use John\Cp\WordRankManager;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Class wordRankerTest
  * @package John\Cp\Test
  */
-class wordRankerTest extends \PHPUnit_Framework_TestCase
+class WordRankManagerTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @throws \John\Cp\UrbanWordException
      */
     public function testIsArray()
     {
-        $wordRanker = new wordRanker("Prosper has finished the curriculum and he will submit it to Nadayar. Tight Tight Tight");
+        $wordRanker = new WordRankManager("Prosper has finished the curriculum and he will submit it to Nadayar. Tight Tight Tight");
         $this->assertTrue(is_array($wordRanker->ranker()));
     }
 
@@ -30,7 +31,7 @@ class wordRankerTest extends \PHPUnit_Framework_TestCase
      */
     public  function testWordCount()
     {
-        $wordRanker = new wordRanker("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
+        $wordRanker = new WordRankManager("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
 
         $this->assertArrayHasKey("fox", $wordRanker->ranker());
         $this->assertArrayHasKey("brown", $wordRanker->ranker());
@@ -41,7 +42,7 @@ class wordRankerTest extends \PHPUnit_Framework_TestCase
      */
     public  function testManageExpectation()
     {
-        $wordRanker = new wordRanker("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
+        $wordRanker = new WordRankManager("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
 
         $expectation = [
             "fox" => 3,
@@ -61,7 +62,7 @@ class wordRankerTest extends \PHPUnit_Framework_TestCase
 
     public function testNoStringProvided()
     {
-        $wordRanker = new wordRanker();
+        $wordRanker = new WordRankManager();
         $wordRanker->ranker();
     }
 }
