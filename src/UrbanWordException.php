@@ -16,6 +16,10 @@ class UrbanWordException extends \Exception
 {
     protected $message;
 
+    /**
+     * UrbanWordException constructor.
+     * @param string $message
+     */
     public function __construct($message = "")
     {
         $this->message = $message;
