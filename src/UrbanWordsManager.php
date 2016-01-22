@@ -4,11 +4,12 @@ namespace John\Cp;
 use John\Cp\UrbanWordException;
 
 /**
- * Class UrbanWordsCRUD
+ * Class handles the CRUD methods on the static $data array defined in UrbanWordsDataStore class
+ * Class UrbanWordsManager
  * @package John\Cp
  */
 
-class UrbanWordsCRUD
+class UrbanWordsManager
 {
     private $words;
     private $slang;
@@ -18,17 +19,15 @@ class UrbanWordsCRUD
     /**
      * UrbanWordsCRUD constructor.
      */
-
     public function __construct()
     {
-        $this->words = UrbanWords::$data;
+        $this->words = UrbanWordsDataStore::$data;
     }
 
     /**
      * return Urban array of words from John/Cp/UrbanWords
      * @return array
      */
-
     public function getWords()
     {
         return $this->words;
@@ -41,14 +40,13 @@ class UrbanWordsCRUD
      * @return bool
      * @throws \John\Cp\UrbanWordException
      */
-
     public function addWord($slang = "", $desc = "", $sentence = "")
     {
         $this->slang = $slang;
         $this->desc = $desc;
         $this->sentence = $sentence;
 
-        if(!empty($this->slang) && !empty($this->desc) && !empty($this->sentence)) {
+        if(! empty($this->slang) && ! empty($this->desc) && ! empty($this->sentence)) {
 
             foreach($this->words as $urbanWord) {
 
@@ -58,13 +56,15 @@ class UrbanWordsCRUD
                 }
             }
 
-            array_push(UrbanWords::$data, [
+            $newWord = [
                 "slang" => $this->slang,
                 "description" => $this->desc,
                 "sample-sentence" => $this->sentence
-            ]);
+            ];
 
-            return true;
+            array_push(UrbanWordsDataStore::$data, $newWord);
+
+            return $newWord;
         } else {
             throw new UrbanWordException("Urban word detail omitted.");
         }
@@ -75,22 +75,16 @@ class UrbanWordsCRUD
      * @return bool
      * @throws \John\Cp\UrbanWordException
      */
-
     public function readWord($slang = "")
     {
         $this->slang = $slang;
-
-        //if it doesn't throw exception
-        //check array for the key word,
-        //if it exists return it
-        //else return false
 
         $foundWord = [
             "success" => false,
             "key" => null
         ];
 
-        if(!empty($this->slang)) {
+        if(! empty($this->slang)) {
             foreach ($this->words as $urbanWordKey => $urbanWord) {
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
 
@@ -107,7 +101,7 @@ class UrbanWordsCRUD
         if ($foundWord["success"]) {
             return $this->words[$foundWord["key"]];
         } else {
-            return false;
+            throw new UrbanWordException('Urban word not found in our data store.');
         }
     }
 
@@ -121,25 +115,21 @@ class UrbanWordsCRUD
      */
     public function updateWord($slang = "", $slangUpdate = "", $descUpdate = "", $sentenceUpdate = "")
     {
-        if (!empty($slangUpdate) && !empty($descUpdate) && !empty($sentenceUpdate)) {
+        if (! empty($slangUpdate) && ! empty($descUpdate) && ! empty($sentenceUpdate)) {
+
             $this->slang = $slang;
+            $wordKey = $this->readWord($this->slang);
 
-            $key = $this->readWord($this->slang);
+            if ($wordKey) {
+                $this->words[$wordKey]["slang"] = $slangUpdate;
+                $this->words[$wordKey]["description"] = $descUpdate;
+                $this->words[$wordKey]["sentence-update"] = $sentenceUpdate;
 
-            if ($key) {
-                $this->words[$key]["slang"] = $slangUpdate;
-                $this->words[$key]["description"] = $descUpdate;
-                $this->words[$key]["sentence-update"] = $sentenceUpdate;
-
-                return $this->words[$key];
-            } else {
-                throw new UrbanWordException("Slang word not found.");
+                return $this->words[$wordKey];
             }
         } else {
-            throw new UrbanWordException("Urban word details omitted.");
+            throw new UrbanWordException("Cannot Update: Urban word details omitted.");
         }
-
-
     }
 
     /**
@@ -150,19 +140,13 @@ class UrbanWordsCRUD
     public function deleteWord($slang = "")
     {
         $this->slang = $slang;
-
-        //if it doesn't throw exception
-        //check array for the key word,
-        //if it exists return it
-        //else return false
-
         $foundWord = [
             "success" => false,
             "key" => null,
             "urbanWord" => []
         ];
 
-        if(!empty($this->slang)) {
+        if(! empty($this->slang)) {
             foreach ($this->words as $urbanWordKey => $urbanWord) {
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
 
@@ -180,8 +164,8 @@ class UrbanWordsCRUD
 
             unset($this->words[$foundWord["key"]]);
             return $foundWord["urbanWord"];
-        } else {
-            return false;
+        }else {
+            throw new UrbanWordException('Urban word not found in our data store.');
         }
     }
 
