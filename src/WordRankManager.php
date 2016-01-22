@@ -8,16 +8,17 @@
 namespace John\Cp;
 
 /**
+ * WordRankManager: A class that returns the occurence of words in a sentence as an associative array
  * Class wordRanker.
  */
-class WordRanker
+class WordRankManager
 {
     /**
      * @var string
      */private $sentence;
 
     /**
-     * wordRanker constructor.
+     * WordRankManager constructor.
      *
      * @param string $sentence
      */
@@ -41,15 +42,15 @@ class WordRanker
      */
     public function ranker()
     {
-        if (!empty($this->sentence)) {
-            //split sentence
-            //consider newline and new tab
+        if (! empty($this->sentence)) {
+
             $wordsArray = preg_split('/\s+/', $this->sentence);
             $rankedArray = [];
 
             foreach ($wordsArray as $word) {
+
                 if (array_key_exists($word, $rankedArray)) {
-                    //word exists in array
+
                     $rankedArray[$word] += 1;
                 } else {
                     $rankedArray[$word] = 1;
@@ -59,8 +60,6 @@ class WordRanker
             if (arsort($rankedArray)) {
                 return $rankedArray;
             }
-
-            throw new UrbanWordException('Sentence is empty.');
         }
 
         throw new UrbanWordException('Sentence is empty.');
