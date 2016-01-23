@@ -100,7 +100,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     public function testUpdateDetails()
     {
         $urbanWords = new UrbanWordsManager();
-        $update = $urbanWords->updateWord('Bae', 'Hella', 'Very or Really', 'I am Hella tired today.');
+        $update = $urbanWords->updateWord('Turnt', 'Hella', 'Very or Really', 'I am Hella tired today.');
 
         $this->assertTrue(is_array($update));
         $this->assertArrayHasKey('slang', $update);
@@ -137,12 +137,12 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
         $urbanWords = new UrbanWordsManager();
 
         //3 urban words in data array
-        $this->assertEquals(4, count($urbanWords->getWords()));
+        $this->assertEquals(3, count($urbanWords->getWords()));
 
         //delete 'bae'
-        $this->assertTrue(is_array($urbanWords->deleteWord('bae')));
-        $this->assertEquals(3, count($urbanWords->getWords()));
-        $this->assertNotContains('bae', $urbanWords->getWords());
+        $this->assertTrue(is_array($urbanWords->deleteWord('lit')));
+        $this->assertEquals(2, count($urbanWords->getWords()));
+        $this->assertNotContains('lit', $urbanWords->getWords());
     }
 
     /**
