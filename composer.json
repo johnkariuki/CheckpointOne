@@ -1,10 +1,10 @@
 {
-    "name": "John/UrbanWords",
+    "name": "john-kariuki/urban-words",
     "type": "library",
     "description": "Urban words, CheckpointOne Andela",
     "keywords": [
-        "John",
-        "UrbanWords"
+        "john-kariuki",
+        "urban-words"
     ],
     "homepage": "https://github.com/andela-jkariuki/CheckpointOne",
     "license": "MIT",
