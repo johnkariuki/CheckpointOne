@@ -61,7 +61,7 @@ class UrbanWordsManager
                 'sample-sentence' => $this->sentence,
             ];
 
-            array_push(UrbanWordsDataStore::$data, $newWord);
+            array_push($this->words, $newWord);
 
             return $newWord;
         } else {
@@ -128,8 +128,8 @@ class UrbanWordsManager
                 $position = $wordKey["position"];
 
                 $this->words[$position]['slang'] = $slangUpdate;
-                $this->words[$position["position"]]['description'] = $descUpdate;
-                $this->words[$position]['sentence-update'] = $sentenceUpdate;
+                $this->words[$position]['description'] = $descUpdate;
+                $this->words[$position]['sample-sentence'] = $sentenceUpdate;
 
                 return $this->words[$position];
             }
@@ -159,6 +159,7 @@ class UrbanWordsManager
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
                     $foundWord['success'] = true;
                     $foundWord['key'] = $urbanWordKey;
+                    $foundWord['urbanWord'] = $this->words[$urbanWordKey];
 
                     break;
                 }
