@@ -3,18 +3,15 @@
  * Created by PhpStorm.
  * User: johnkariuki
  * Date: 20/01/2016
- * Time: 11:57
+ * Time: 11:57.
  */
-
-namespace John\Cp\Test;
+namespace John\Tests;
 
 use John\Cp\UrbanWordsManager;
-use John\Cp\UrbanWordException;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Class UrbanWordsManagerTest
- * @package John\Cp\Test
+ * Class UrbanWordsManagerTest.
  */
 class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
 {
@@ -28,12 +25,11 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     public function testAddNewWord()
     {
         $urbanWords = new UrbanWordsManager();
-        $this->assertTrue(is_array($urbanWords->addWord("bae", "endearing term for lover", "I need a Bae.")));
-
+        $this->assertTrue(is_array($urbanWords->addWord('bae', 'endearing term for lover', 'I need a Bae.')));
     }
 
     /**
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Urban word detail omitted.
      */
     public function testUrbanWordDetailsOmission()
@@ -44,14 +40,13 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Urban word already exists.
      */
-
     public function testDuplicateUrbanWord()
     {
         $urbanWords = new UrbanWordsManager();
-        $urbanWords->addWord("Tight", "When someone performs an awesome task", "Prosper has finished the curriculum, Tight.");
+        $urbanWords->addWord('Tight', 'When someone performs an awesome task', 'Prosper has finished the curriculum, Tight.');
     }
 
     /**
@@ -62,13 +57,13 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
         $urbanWords = new UrbanWordsManager();
 
         //array is returned;
-        $this->assertTrue(is_array($urbanWords->readWord("Tight")));
+        $this->assertTrue(is_array($urbanWords->readWord('Tight')));
 
         //array with urban word format is returned
         $keys = [
             'slang',
             'description',
-            'sample-sentence'
+            'sample-sentence',
         ];
 
         $this->assertArrayHasKey($keys[0], $urbanWords->getWords()[0]);
@@ -78,7 +73,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @throws UrbanWordException
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Urban word omitted.
      */
     public function testReadEmptyUrbanWord()
@@ -88,7 +83,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Urban word not found in our data store.
      */
     public function testReadNonExistentWord()
@@ -96,16 +91,16 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
         $urbanWords = new UrbanWordsManager();
 
         //Search non existent Urban word
-        $this->assertFalse($urbanWords->readWord("someRandomstring oshe!"));
+        $this->assertFalse($urbanWords->readWord('someRandomstring oshe!'));
     }
 
     /**
      * @throws UrbanWordException
      */
-    public function UpdateDetails()
+    public function testUpdateDetails()
     {
         $urbanWords = new UrbanWordsManager();
-        $update = $urbanWords->updateWord("Bae", "Hella", "Very or Really", "I am Hella tired today.");
+        $update = $urbanWords->updateWord('Bae', 'Hella', 'Very or Really', 'I am Hella tired today.');
 
         $this->assertTrue(is_array($update));
         $this->assertArrayHasKey('slang', $update);
@@ -115,7 +110,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Cannot Update: Urban word details omitted.
      */
     public function testEmptyUpdateDetails()
@@ -125,13 +120,13 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Urban word not found in our data store.
      */
     public function testUpdateNonExistentUrbanWord()
     {
         $urbanWords = new UrbanWordsManager();
-        $urbanWords->updateWord("randomStr", "DFgdfgdf", "DFgfdgf", "DFgdfgf");
+        $urbanWords->updateWord('randomStr', 'DFgdfgdf', 'DFgfdgf', 'DFgdfgf');
     }
 
     /**
@@ -151,7 +146,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Urban word omitted.
      */
     public function testDeleteEmptyUrbanWord()
@@ -161,13 +156,14 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Urban word not found in our data store.
+     *
      * @throws UrbanWordException
      */
     public function testDeleteNonExistentUrbanWord()
     {
         $urbanWords = new UrbanWordsManager();
-        $urbanWords->deleteWord("some random string");
+        $urbanWords->deleteWord('some random string');
     }
 }

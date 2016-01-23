@@ -6,19 +6,19 @@
  * Time: 22:26
  */
 
-namespace John\Cp\Test;
+namespace John\Tests;
 
 use John\Cp\WordRankManager;
 use PHPUnit_Framework_TestCase;
 
 /**
  * Class wordRankerTest
- * @package John\Cp\Test
+ * @package John\Tests
  */
 class WordRankManagerTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @throws \John\Cp\UrbanWordException
+     * @throws \John\Exceptions\UrbanWordException
      */
     public function testIsArray()
     {
@@ -27,9 +27,9 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \John\Cp\UrbanWordException
+     * @throws \John\Exceptions\UrbanWordException
      */
-    public  function testWordCount()
+    public function testWordCount()
     {
         $wordRanker = new WordRankManager("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
 
@@ -38,9 +38,9 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \John\Cp\UrbanWordException
+     * @throws \John\Exceptions\UrbanWordException
      */
-    public  function testManageExpectation()
+    public function testManageExpectation()
     {
         $wordRanker = new WordRankManager("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
 
@@ -55,9 +55,9 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Cp\UrbanWordException
+     * @expectedException \John\Exceptions\UrbanWordException
      * @expectedExceptionMessage Sentence is empty.
-     * @throws \John\Cp\UrbanWordException
+     * @throws \John\Exceptions\UrbanWordException
      */
 
     public function testNoStringProvided()

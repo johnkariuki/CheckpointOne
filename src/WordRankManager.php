@@ -7,6 +7,8 @@
  */
 namespace John\Cp;
 
+use John\Exceptions\UrbanWordException;
+
 /**
  * WordRankManager: A class that returns the occurence of words in a sentence as an associative array
  * Class wordRanker.

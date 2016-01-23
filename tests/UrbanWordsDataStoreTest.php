@@ -3,21 +3,20 @@
  * Created by PhpStorm.
  * User: johnkariuki
  * Date: 20/01/2016
- * Time: 10:06
+ * Time: 10:06.
  */
+namespace John\Tests;
 
-namespace John\Cp\Test;
 use John\Cp\UrbanWordsDataStore;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Class UrbanWordsTest
- * @package John\Cp\Test
+ * Class UrbanWordsTest.
  */
 class UrbanWordsDataStoreTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Assert that the static data variable is an array
+     * Assert that the static data variable is an array.
      */
     public function testArray()
     {
@@ -25,7 +24,7 @@ class UrbanWordsDataStoreTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that the static array contains Urban Word details
+     * Assert that the static array contains Urban Word details.
      */
     public function testArrayHasUrbanWords()
     {
@@ -37,14 +36,14 @@ class UrbanWordsDataStoreTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that the static array is of the specified format(slang, description and sample-sentence)
+     * Assert that the static array is of the specified format(slang, description and sample-sentence).
      */
-    public  function testArrayHasKeys()
+    public function testArrayHasKeys()
     {
         $keys = [
             'slang',
             'description',
-            'sample-sentence'
+            'sample-sentence',
         ];
 
         $this->assertArrayHasKey($keys[0], UrbanWordsDataStore::$data[0]);
