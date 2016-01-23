@@ -6,13 +6,15 @@
  * Time: 13:07
  */
 
-namespace John\Cp;
+namespace John\Exceptions;
+
+use Exception;
 
 /**
  * Class UrbanWordException
- * @package John\Cp\Errors
+ * @package John\Errors
  */
-class UrbanWordException extends \Exception
+class UrbanWordException extends Exception
 {
     protected $message;
 

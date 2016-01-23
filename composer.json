@@ -25,12 +25,13 @@
     },
     "autoload": {
         "psr-4": {
-            "John\\Cp\\": "src"
+            "John\\Cp\\": "src",
+            "John\\Exceptions\\": "src\\exceptions"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "John\\Cp\\Test\\": "tests"
+            "John\\Tests\\": "tests"
         }
     },
     "scripts": {

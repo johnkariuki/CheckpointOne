@@ -1,5 +1,6 @@
 <?php
 namespace John\Cp;
+
 /**
  * class with a static array that contains Urban Words
  * Class UrbanWordsDataStore
@@ -10,8 +11,8 @@ class UrbanWordsDataStore
     /**
      * @var array
      */
-	public static $data = [
-		[
+    public static $data = [
+        [
             "slang" => "Tight",
             "description" => "When someone performs an awesome task",
             "sample-sentence" => "Prosper has finished the curriculum, Tight."
@@ -26,5 +27,5 @@ class UrbanWordsDataStore
             "description" => "State of being in full party mode.",
             "sample-sentence" => "Yo were you at John's party? it was turnt!."
         ]
-	];
+    ];
 }
