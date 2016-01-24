@@ -1,6 +1,7 @@
 ### CheckpointOne
 
 ![Build Pass] (https://travis-ci.org/andela-jkariuki/CheckpointOne.svg?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/andela-jkariuki/CheckpointOne/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/andela-jkariuki/CheckpointOne/?branch=master)
 
 ##  Urban Dictionary Agnostic PHP Package
 
