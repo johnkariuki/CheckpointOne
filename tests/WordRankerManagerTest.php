@@ -17,13 +17,19 @@ use PHPUnit_Framework_TestCase;
  */
 class WordRankManagerTest extends PHPUnit_Framework_TestCase
 {
+    protected $wordRanker;
+
+    protected function setUp()
+    {
+        $this->wordRanker = new WordRankManager("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
+    }
+
     /**
      * @throws \John\Exceptions\UrbanWordException
      */
     public function testIsArray()
     {
-        $wordRanker = new WordRankManager("Prosper has finished the curriculum and he will submit it to Nadayar. Tight Tight Tight");
-        $this->assertTrue(is_array($wordRanker->ranker()));
+        $this->assertTrue(is_array($this->wordRanker->ranker()));
     }
 
     /**
@@ -31,10 +37,8 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testWordCount()
     {
-        $wordRanker = new WordRankManager("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
-
-        $this->assertArrayHasKey("fox", $wordRanker->ranker());
-        $this->assertArrayHasKey("brown", $wordRanker->ranker());
+        $this->assertArrayHasKey("fox", $this->wordRanker->ranker());
+        $this->assertArrayHasKey("brown", $this->wordRanker->ranker());
     }
 
     /**
@@ -42,8 +46,6 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testManageExpectation()
     {
-        $wordRanker = new WordRankManager("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
-
         $expectation = [
             "fox" => 3,
             "brown" => 2,
@@ -51,7 +53,7 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
             "a" => 2
         ];
 
-        $this->assertArraySubset($expectation, $wordRanker->ranker());
+        $this->assertArraySubset($expectation, $this->wordRanker->ranker());
     }
 
     /**

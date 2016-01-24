@@ -15,17 +15,22 @@ use PHPUnit_Framework_TestCase;
  */
 class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
 {
+    protected $urbanWords;
+
+    protected function setUp()
+    {
+        $this->urbanWords = new UrbanWordsManager();
+    }
+
     public function testFetchArray()
     {
-        $urbanWords = new UrbanWordsManager();
-        $this->assertTrue(is_array($urbanWords->getWords()));
-        $this->assertEquals(3, count($urbanWords->getWords()));
+        $this->assertTrue(is_array($this->urbanWords->getWords()));
+        $this->assertEquals(3, count($this->urbanWords->getWords()));
     }
 
     public function testAddNewWord()
     {
-        $urbanWords = new UrbanWordsManager();
-        $this->assertTrue(is_array($urbanWords->addWord('bae', 'endearing term for lover', 'I need a Bae.')));
+        $this->assertTrue(is_array($this->urbanWords->addWord('bae', 'endearing term for lover', 'I need a Bae.')));
     }
 
     /**
@@ -35,8 +40,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     public function testUrbanWordDetailsOmission()
     {
         //No Urban word details provided
-        $urbanWords = new UrbanWordsManager();
-        $urbanWords->addWord();
+        $this->urbanWords->addWord();
     }
 
     /**
@@ -45,8 +49,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testDuplicateUrbanWord()
     {
-        $urbanWords = new UrbanWordsManager();
-        $urbanWords->addWord('Tight', 'When someone performs an awesome task', 'Prosper has finished the curriculum, Tight.');
+        $this->urbanWords->addWord('Tight', 'When someone performs an awesome task', 'Prosper has finished the curriculum, Tight.');
     }
 
     /**
@@ -54,10 +57,8 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testReadUrbanWord()
     {
-        $urbanWords = new UrbanWordsManager();
-
         //array is returned;
-        $this->assertTrue(is_array($urbanWords->readWord('Tight')));
+        $this->assertTrue(is_array($this->urbanWords->readWord('Tight')));
 
         //array with urban word format is returned
         $keys = [
@@ -66,9 +67,9 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
             'sample-sentence',
         ];
 
-        $this->assertArrayHasKey($keys[0], $urbanWords->getWords()[0]);
-        $this->assertArrayHasKey($keys[1], $urbanWords->getWords()[0]);
-        $this->assertArrayHasKey($keys[2], $urbanWords->getWords()[0]);
+        $this->assertArrayHasKey($keys[0], $this->urbanWords->getWords()[0]);
+        $this->assertArrayHasKey($keys[1], $this->urbanWords->getWords()[0]);
+        $this->assertArrayHasKey($keys[2], $this->urbanWords->getWords()[0]);
     }
 
     /**
@@ -78,8 +79,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testReadEmptyUrbanWord()
     {
-        $urbanWords = new UrbanWordsManager();
-        $urbanWords->readWord();
+        $this->urbanWords->readWord();
     }
 
     /**
@@ -88,10 +88,8 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testReadNonExistentWord()
     {
-        $urbanWords = new UrbanWordsManager();
-
         //Search non existent Urban word
-        $this->assertFalse($urbanWords->readWord('someRandomstring oshe!'));
+        $this->assertFalse($this->urbanWords->readWord('someRandomstring oshe!'));
     }
 
     /**
@@ -99,8 +97,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdateDetails()
     {
-        $urbanWords = new UrbanWordsManager();
-        $update = $urbanWords->updateWord('Turnt', 'Hella', 'Very or Really', 'I am Hella tired today.');
+        $update = $this->urbanWords->updateWord('Turnt', 'Hella', 'Very or Really', 'I am Hella tired today.');
 
         $this->assertTrue(is_array($update));
         $this->assertArrayHasKey('slang', $update);
@@ -115,8 +112,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testEmptyUpdateDetails()
     {
-        $urbanWords = new UrbanWordsManager();
-        $urbanWords->updateWord();
+        $this->urbanWords->updateWord();
     }
 
     /**
@@ -125,8 +121,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdateNonExistentUrbanWord()
     {
-        $urbanWords = new UrbanWordsManager();
-        $urbanWords->updateWord('randomStr', 'DFgdfgdf', 'DFgfdgf', 'DFgdfgf');
+        $this->urbanWords->updateWord('randomStr', 'DFgdfgdf', 'DFgfdgf', 'DFgdfgf');
     }
 
     /**
@@ -134,15 +129,13 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testDeleteWord()
     {
-        $urbanWords = new UrbanWordsManager();
-
         //3 urban words in data array
-        $this->assertEquals(3, count($urbanWords->getWords()));
+        $this->assertEquals(3, count($this->urbanWords->getWords()));
 
         //delete 'bae'
-        $this->assertTrue(is_array($urbanWords->deleteWord('lit')));
-        $this->assertEquals(2, count($urbanWords->getWords()));
-        $this->assertNotContains('lit', $urbanWords->getWords());
+        $this->assertTrue(is_array($this->urbanWords->deleteWord('lit')));
+        $this->assertEquals(2, count($this->urbanWords->getWords()));
+        $this->assertNotContains('lit', $this->urbanWords->getWords());
     }
 
     /**
@@ -151,8 +144,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testDeleteEmptyUrbanWord()
     {
-        $urbanWords = new UrbanWordsManager();
-        $urbanWords->deleteWord();
+        $this->urbanWords->deleteWord();
     }
 
     /**
@@ -163,7 +155,6 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testDeleteNonExistentUrbanWord()
     {
-        $urbanWords = new UrbanWordsManager();
-        $urbanWords->deleteWord('some random string');
+        $this->urbanWords->deleteWord('some random string');
     }
 }
