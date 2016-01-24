@@ -1,6 +1,6 @@
 ### CheckpointOne
 
-https://travis-ci.org/andela-jkariuki/CheckpointOne.svg?branch=master
+![Build Pass] (https://travis-ci.org/andela-jkariuki/CheckpointOne.svg?branch=master)
 
 ##  Urban Dictionary Agnostic PHP Package
 
