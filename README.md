@@ -1,4 +1,7 @@
 ### CheckpointOne
+
+https://travis-ci.org/andela-jkariuki/CheckpointOne.svg?branch=master
+
 ##  Urban Dictionary Agnostic PHP Package
 
 Andela Checkpoint 1. An urban words dictionary, Urban Word CRUD and Ranking System for word occurence in a sentence. **#TIA**
