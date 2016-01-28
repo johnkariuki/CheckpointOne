@@ -6,7 +6,17 @@
 
 ##  Urban Dictionary Agnostic PHP Package
 
-Andela Checkpoint 1. An urban words dictionary, Urban Word CRUD and Ranking System for word occurence in a sentence. **#TIA**
+Andela Checkpoint One. 
+
+### Urban Words Manager
+
+An urban words dictionary, Urban Word CRUD and Ranking System for word occurence in a sentence. 
+
+### Word Rank Manager
+
+Rank the occurence of words in a sentence.
+
+**#TIA**
 
 ## Installation
 add the package to your projects folder
@@ -73,13 +83,6 @@ try {
 } catch (UrbanWordException $e) {
     $e->getMessage();
 }
-```
-
-## Tests
-
-Run the phpunit command
-```
-phpunit
 ```
 
 
