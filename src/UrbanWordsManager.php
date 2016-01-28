@@ -34,6 +34,8 @@ class UrbanWordsManager
     }
 
     /**
+     * Add new word into the Urban Word dictionary
+     *
      * @param string $slang
      * @param string $desc
      * @param string $sentence
@@ -70,6 +72,8 @@ class UrbanWordsManager
     }
 
     /**
+     * Read words from the Urban Words Dictionary
+     *
      * @param string $slang
      *
      * @return bool
@@ -109,6 +113,8 @@ class UrbanWordsManager
     }
 
     /**
+     * Update slang Words in the Urban Dictionary
+     *
      * @param string $slang
      * @param string $slangUpdate
      * @param string $descUpdate
@@ -139,6 +145,8 @@ class UrbanWordsManager
     }
 
     /**
+     * Delete word from Urban dictionary
+     *
      * @param string $slang
      *
      * @return bool

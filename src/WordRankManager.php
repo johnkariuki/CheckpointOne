@@ -30,6 +30,8 @@ class WordRankManager
     }
 
     /**
+     * Return array of Urban words dictinonary
+     *
      * @return string
      */
     public function getWord()
@@ -38,6 +40,8 @@ class WordRankManager
     }
 
     /**
+     * Rank occurence of words in a sentence
+     *
      * @return array
      *
      * @throws \John\Cp\UrbanWordException
