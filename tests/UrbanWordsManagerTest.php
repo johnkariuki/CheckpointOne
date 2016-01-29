@@ -34,7 +34,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word detail omitted.
      */
     public function testUrbanWordDetailsOmission()
@@ -44,7 +44,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word already exists.
      */
     public function testDuplicateUrbanWord()
@@ -53,7 +53,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws UrbanWordException
+     * @throws WordManagerException
      */
     public function testReadUrbanWord()
     {
@@ -73,8 +73,8 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws UrbanWordException
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @throws WordManagerException
+     * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word omitted.
      */
     public function testReadEmptyUrbanWord()
@@ -83,7 +83,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word not found in our data store.
      */
     public function testReadNonExistentWord()
@@ -93,7 +93,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws UrbanWordException
+     * @throws WordManagerException
      */
     public function testUpdateDetails()
     {
@@ -107,7 +107,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Cannot Update: Urban word details omitted.
      */
     public function testEmptyUpdateDetails()
@@ -116,7 +116,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word not found in our data store.
      */
     public function testUpdateNonExistentUrbanWord()
@@ -125,7 +125,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws UrbanWordException
+     * @throws WordManagerException
      */
     public function testDeleteWord()
     {
@@ -139,7 +139,7 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word omitted.
      */
     public function testDeleteEmptyUrbanWord()
@@ -148,10 +148,10 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word not found in our data store.
      *
-     * @throws UrbanWordException
+     * @throws WordManagerException
      */
     public function testDeleteNonExistentUrbanWord()
     {

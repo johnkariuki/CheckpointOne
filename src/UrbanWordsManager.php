@@ -3,6 +3,7 @@
 namespace John\Cp;
 
 use John\Exceptions\UrbanWordException;
+use John\Exceptions\WordManagerException;
 
 /**
  * Class handles the CRUD methods on the static $data array defined in UrbanWordsDataStore class
@@ -42,7 +43,7 @@ class UrbanWordsManager
      *
      * @return bool
      *
-     * @throws \John\Exceptions\UrbanWordException
+     * @throws \John\Exceptions\WordManagerException
      */
     public function addWord($slang = '', $desc = '', $sentence = '')
     {
@@ -50,10 +51,10 @@ class UrbanWordsManager
         $this->desc = $desc;
         $this->sentence = $sentence;
 
-        if (!empty($this->slang) && !empty($this->desc) && !empty($this->sentence)) {
+        if (! empty($this->slang) && !empty($this->desc) && !empty($this->sentence)) {
             foreach ($this->words as $urbanWord) {
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
-                    throw new UrbanWordException('Urban word already exists.');
+                    throw new WordManagerException('Urban word already exists.');
                 }
             }
 
@@ -67,7 +68,7 @@ class UrbanWordsManager
 
             return $newWord;
         } else {
-            throw new UrbanWordException('Urban word detail omitted.');
+            throw new WordManagerException('Urban word detail omitted.');
         }
     }
 
@@ -78,7 +79,7 @@ class UrbanWordsManager
      *
      * @return bool
      *
-     * @throws \John\Exceptions\UrbanWordException
+     * @throws \John\Exceptions\WordManagerException
      */
     public function readWord($slang = '')
     {
@@ -89,7 +90,7 @@ class UrbanWordsManager
             'key' => null,
         ];
 
-        if (!empty($this->slang)) {
+        if (! empty($this->slang)) {
             foreach ($this->words as $urbanWordKey => $urbanWord) {
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
                     $foundWord['success'] = true;
@@ -99,7 +100,7 @@ class UrbanWordsManager
                 }
             }
         } else {
-            throw new UrbanWordException('Urban word omitted.');
+            throw new WordManagerException('Urban word omitted.');
         }
 
         if ($foundWord['success']) {
@@ -108,7 +109,7 @@ class UrbanWordsManager
                 'position' => $foundWord['key']
             ];
         } else {
-            throw new UrbanWordException('Urban word not found in our data store.');
+            throw new WordManagerException('Urban word not found in our data store.');
         }
     }
 
@@ -126,7 +127,7 @@ class UrbanWordsManager
      */
     public function updateWord($slang = '', $slangUpdate = '', $descUpdate = '', $sentenceUpdate = '')
     {
-        if (!empty($slangUpdate) && !empty($descUpdate) && !empty($sentenceUpdate)) {
+        if (! empty($slangUpdate) && ! empty($descUpdate) && ! empty($sentenceUpdate)) {
             $this->slang = $slang;
             $wordKey = $this->readWord($this->slang);
             
@@ -140,7 +141,7 @@ class UrbanWordsManager
                 return $this->words[$position];
             }
         } else {
-            throw new UrbanWordException('Cannot Update: Urban word details omitted.');
+            throw new WordManagerException('Cannot Update: Urban word details omitted.');
         }
     }
 
@@ -162,7 +163,7 @@ class UrbanWordsManager
         'urbanWord' => [],
         ];
 
-        if (!empty($this->slang)) {
+        if (! empty($this->slang)) {
             foreach ($this->words as $urbanWordKey => $urbanWord) {
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
                     $foundWord['success'] = true;
@@ -173,7 +174,7 @@ class UrbanWordsManager
                 }
             }
         } else {
-            throw new UrbanWordException('Urban word omitted.');
+            throw new WordManagerException('Urban word omitted.');
         }
 
         if ($foundWord['success']) {
@@ -181,7 +182,7 @@ class UrbanWordsManager
 
             return $foundWord['urbanWord'];
         } else {
-            throw new UrbanWordException('Urban word not found in our data store.');
+            throw new WordManagerException('Urban word not found in our data store.');
         }
     }
 }
