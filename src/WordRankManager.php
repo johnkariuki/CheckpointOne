@@ -8,6 +8,7 @@
 namespace John\Cp;
 
 use John\Exceptions\UrbanWordException;
+use John\Exceptions\WordRankManagerException;
 
 /**
  * WordRankManager: A class that returns the occurence of words in a sentence as an associative array
@@ -44,7 +45,7 @@ class WordRankManager
      *
      * @return array
      *
-     * @throws \John\Cp\UrbanWordException
+     * @throws \John\Exceptions\WordRankManagerException
      */
     public function ranker()
     {
@@ -68,6 +69,6 @@ class WordRankManager
             }
         }
 
-        throw new UrbanWordException('Sentence is empty.');
+        throw new WordRankManagerException('Sentence is empty.');
     }
 }

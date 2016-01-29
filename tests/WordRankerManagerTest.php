@@ -57,9 +57,9 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \John\Exceptions\UrbanWordException
+     * @expectedException \John\Exceptions\WordRankManagerException
      * @expectedExceptionMessage Sentence is empty.
-     * @throws \John\Exceptions\UrbanWordException
+     * @throws \John\Exceptions\WordRankManagerException
      */
 
     public function testNoStringProvided()
