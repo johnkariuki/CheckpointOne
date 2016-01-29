@@ -33,6 +33,14 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test that the method returns a sentence
+     */
+    public function testSentence()
+    {
+        $this->assertTrue(is_string($this->wordRanker->getWord()));
+    }
+
+    /**
      * @throws \John\Exceptions\UrbanWordException
      */
     public function testWordCount()

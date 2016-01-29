@@ -31,7 +31,7 @@ class WordRankManager
     }
 
     /**
-     * Return array of Urban words dictinonary
+     * Return sentence to show occurence
      *
      * @return string
      */
