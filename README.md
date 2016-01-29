@@ -35,28 +35,30 @@ Let's get using Urban Words
 
 ```php
 <?php
-    require 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
-    use John\Cp\UrbanWordsDatastore;
-    use John\Cp\UrbanWordsManager;
-    use John\Cp\WordRankManager;
-    use John\Exceptions\UrbanWordException;
+use John\Cp\UrbanWordsDatastore;
+use John\Cp\UrbanWordsManager;
+use John\Cp\WordRankManager;
+use John\Exceptions\UrbanWordException;
+use John\Exceptions\WordRankManagerException;
+use John\Exceptions\WordManagerException;
 
-    //Class UrbanWordsDatastore contains a static array of urban words
-    print_r(UrbanWordsDatastore::$data);
+//Class UrbanWordsDatastore contains a static array of urban words
+print_r(UrbanWordsDatastore::$data);
 
-    /**
-     * Class UrbanWordsManager performs CRUD methods on the $data array in UrbanWordsDataStore
-     * Methods:
-     * addWord(word, desc, sentence)
-     * readWord(word)
-     * updateWord(word, foo, bar, foobar)
-     * deleteWord(word)
-     */
+/**
+    * Class UrbanWordsManager performs CRUD methods on the $data array in UrbanWordsDataStore
+    * Methods:
+    * addWord(word, desc, sentence)
+    * readWord(word)
+    * updateWord(word, foo, bar, foobar)
+    * deleteWord(word)
+*/
+try {
 
     $urbanWord = new UrbanWordsManager();
 
-try {
     //Add new word, description and sentence
     print_r($urbanWord->addWord('Bae', 'Endearing term for lover', 'Your bae has a bae'));
 
@@ -71,19 +73,21 @@ try {
 
     print_r($urbanWord->getWords());
 
-} catch (UrbanWordException $e) {
-    echo $e->getMessage();
+} catch (WordManagerException $e) {
+    echo $e->errorMessage();
 }
 
 //Class WordRankManager returns the frequency of occurence of a word in a sentence
 
+
 try {
     $sentence = new WordRankManager("The big brown fox is just a big brown fox jumping up all in the lazy dog's business");
     print_r($sentence->ranker());
-} catch (UrbanWordException $e) {
-    $e->getMessage();
+} catch (WordRankManagerException $e) {
+    echo $e->errorMessage();
 }
 ```
+
 ## Contributing
 
 Contributions are **welcome** and will be fully **credited**.
