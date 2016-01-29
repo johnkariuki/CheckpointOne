@@ -1,4 +1,5 @@
 <?php
+
 namespace John\Exceptions;
 
 use Exception;

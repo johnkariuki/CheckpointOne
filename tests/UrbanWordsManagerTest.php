@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: johnkariuki
- * Date: 20/01/2016
- * Time: 11:57.
- */
+
 namespace John\Tests;
 
 use John\Cp\UrbanWordsManager;

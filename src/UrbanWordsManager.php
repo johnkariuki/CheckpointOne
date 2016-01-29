@@ -25,7 +25,7 @@ class UrbanWordsManager
     }
 
     /**
-     * return Urban array of words from John/Cp/UrbanWords.
+     * return Urban array of words from John\Cp\UrbanWords.
      *
      * @return array
      */
@@ -51,9 +51,12 @@ class UrbanWordsManager
         $this->desc = $desc;
         $this->sentence = $sentence;
 
-        if (! empty($this->slang) && !empty($this->desc) && !empty($this->sentence)) {
+        if (! empty($this->slang) && ! empty($this->desc) && ! empty($this->sentence)) {
+
             foreach ($this->words as $urbanWord) {
+
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
+
                     throw new WordManagerException('Urban word already exists.');
                 }
             }
@@ -68,6 +71,7 @@ class UrbanWordsManager
 
             return $newWord;
         } else {
+
             throw new WordManagerException('Urban word detail omitted.');
         }
     }
@@ -91,8 +95,11 @@ class UrbanWordsManager
         ];
 
         if (! empty($this->slang)) {
+
             foreach ($this->words as $urbanWordKey => $urbanWord) {
+
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
+
                     $foundWord['success'] = true;
                     $foundWord['key'] = $urbanWordKey;
 
@@ -100,15 +107,18 @@ class UrbanWordsManager
                 }
             }
         } else {
+
             throw new WordManagerException('Urban word omitted.');
         }
 
         if ($foundWord['success']) {
+
             return [
                 'word' =>  $this->words[$foundWord['key']],
                 'position' => $foundWord['key']
             ];
         } else {
+
             throw new WordManagerException('Urban word not found in our data store.');
         }
     }
@@ -128,10 +138,12 @@ class UrbanWordsManager
     public function updateWord($slang = '', $slangUpdate = '', $descUpdate = '', $sentenceUpdate = '')
     {
         if (! empty($slangUpdate) && ! empty($descUpdate) && ! empty($sentenceUpdate)) {
+
             $this->slang = $slang;
             $wordKey = $this->readWord($this->slang);
             
             if ($wordKey) {
+
                 $position = $wordKey["position"];
 
                 $this->words[$position]['slang'] = $slangUpdate;
@@ -141,6 +153,7 @@ class UrbanWordsManager
                 return $this->words[$position];
             }
         } else {
+
             throw new WordManagerException('Cannot Update: Urban word details omitted.');
         }
     }
@@ -157,15 +170,19 @@ class UrbanWordsManager
     public function deleteWord($slang = '')
     {
         $this->slang = $slang;
+
         $foundWord = [
-        'success' => false,
-        'key' => null,
-        'urbanWord' => [],
+            'success' => false,
+            'key' => null,
+            'urbanWord' => [],
         ];
 
         if (! empty($this->slang)) {
+
             foreach ($this->words as $urbanWordKey => $urbanWord) {
+
                 if (strtolower($urbanWord['slang']) === strtolower($this->slang)) {
+
                     $foundWord['success'] = true;
                     $foundWord['key'] = $urbanWordKey;
                     $foundWord['urbanWord'] = $this->words[$urbanWordKey];
@@ -174,14 +191,17 @@ class UrbanWordsManager
                 }
             }
         } else {
+
             throw new WordManagerException('Urban word omitted.');
         }
 
         if ($foundWord['success']) {
+
             unset($this->words[$foundWord['key']]);
 
             return $foundWord['urbanWord'];
         } else {
+            
             throw new WordManagerException('Urban word not found in our data store.');
         }
     }
