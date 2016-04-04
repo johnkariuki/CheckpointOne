@@ -70,10 +70,9 @@ class UrbanWordsManager
             array_push($this->words, $newWord);
 
             return $newWord;
-        } else {
-
-            throw new WordManagerException('Urban word detail omitted.');
         }
+
+        throw new WordManagerException('Urban word detail omitted.');
     }
 
     /**
@@ -141,7 +140,7 @@ class UrbanWordsManager
 
             $this->slang = $slang;
             $wordKey = $this->readWord($this->slang);
-            
+
             if ($wordKey) {
 
                 $position = $wordKey["position"];
@@ -201,7 +200,7 @@ class UrbanWordsManager
 
             return $foundWord['urbanWord'];
         } else {
-            
+
             throw new WordManagerException('Urban word not found in our data store.');
         }
     }
