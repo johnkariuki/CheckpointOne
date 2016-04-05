@@ -116,10 +116,9 @@ class UrbanWordsManager
                 'word' =>  $this->words[$foundWord['key']],
                 'position' => $foundWord['key']
             ];
-        } else {
-
-            throw new WordManagerException('Urban word not found in our data store.');
         }
+
+        throw new WordManagerException('Urban word not found in our data store.');
     }
 
     /**
