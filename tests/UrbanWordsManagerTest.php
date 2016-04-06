@@ -17,12 +17,24 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
         $this->urbanWords = new UrbanWordsManager();
     }
 
+    /**
+     * Assert that getWords returns an array
+     * with 3 items.
+     *
+     * @return void
+     */
     public function testFetchArray()
     {
         $this->assertTrue(is_array($this->urbanWords->getWords()));
         $this->assertEquals(3, count($this->urbanWords->getWords()));
     }
 
+    /**
+     * Asser that adding a new Urban word
+     * returns a true message.
+     *
+     * @return void
+     */
     public function testAddNewWord()
     {
         $this->assertTrue(is_array($this->urbanWords->addWord('bae', 'endearing term for lover', 'I need a Bae.')));
