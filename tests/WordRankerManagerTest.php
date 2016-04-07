@@ -59,6 +59,9 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Assert that when s sentence is not provided, an
+     * exception is thrown.
+     *
      * @expectedException \John\Exceptions\WordRankManagerException
      * @expectedExceptionMessage Sentence is empty.
      * @throws \John\Exceptions\WordRankManagerException

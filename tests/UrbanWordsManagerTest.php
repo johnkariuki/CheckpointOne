@@ -19,7 +19,8 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
 
     /**
      * Assert that getWords returns an array
-     * with 3 items.
+     * with 3 items(3 urban words).
+     * .
      *
      * @return void
      */
@@ -41,6 +42,9 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Assert that when a word with missing details is added,
+     * an exception is thrown.
+     *
      * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word detail omitted.
      */
