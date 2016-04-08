@@ -20,7 +20,6 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     /**
      * Assert that getWords returns an array
      * with 3 items(3 urban words).
-     * .
      *
      * @return void
      */
@@ -60,7 +59,11 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testDuplicateUrbanWord()
     {
-        $this->urbanWords->addWord('Tight', 'When someone performs an awesome task', 'Prosper has finished the curriculum, Tight.');
+        $this->urbanWords->addWord(
+            'Tight',
+            'When someone performs an awesome task',
+            'Prosper has finished the curriculum, Tight.'
+        );
     }
 
     /**
@@ -108,7 +111,12 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdateDetails()
     {
-        $update = $this->urbanWords->updateWord('Turnt', 'Hella', 'Very or Really', 'I am Hella tired today.');
+        $update = $this->urbanWords->updateWord(
+            'Turnt',
+            'Hella',
+            'Very or Really',
+            'I am Hella tired today.'
+        );
 
         $this->assertTrue(is_array($update));
         $this->assertArrayHasKey('slang', $update);
@@ -132,7 +140,12 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdateNonExistentUrbanWord()
     {
-        $this->urbanWords->updateWord('randomStr', 'DFgdfgdf', 'DFgfdgf', 'DFgdfgf');
+        $this->urbanWords->updateWord(
+            'randomStr',
+            'DFgdfgdf',
+            'DFgfdgf',
+            'DFgdfgf'
+        );
     }
 
     /**

@@ -26,12 +26,19 @@ class UrbanWordsDataStoreTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty(UrbanWordsDataStore::$data);
 
         $this->assertEquals('Tight', UrbanWordsDataStore::$data[0]['slang']);
-        $this->assertEquals('When someone performs an awesome task', UrbanWordsDataStore::$data[0]['description']);
-        $this->assertEquals('Prosper has finished the curriculum, Tight.', UrbanWordsDataStore::$data[0]['sample-sentence']);
+        $this->assertEquals(
+            'When someone performs an awesome task',
+            UrbanWordsDataStore::$data[0]['description']
+        );
+        $this->assertEquals(
+            'Prosper has finished the curriculum, Tight.',
+            UrbanWordsDataStore::$data[0]['sample-sentence']
+        );
     }
 
     /**
-     * Assert that the static array is of the specified format(slang, description and sample-sentence).
+     * Assert that the static array is of the specified format(slang,
+     * description and sample-sentence).
      */
     public function testArrayHasKeys()
     {
