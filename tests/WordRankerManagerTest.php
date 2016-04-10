@@ -13,12 +13,18 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
 {
     protected $wordRanker;
 
+    /**
+     * Initialize WordRankManager with a sentence.
+     */
     protected function setUp()
     {
         $this->wordRanker = new WordRankManager("The big brown fox is just a weird big brown fox jumping over a lazy dog.\nCumon' fox ");
     }
 
     /**
+     * Assert that WordRankManager's ranker method returns an
+     * array.
+     *
      * @throws \John\Exceptions\UrbanWordException
      */
     public function testIsArray()
