@@ -33,7 +33,7 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test that the method returns a sentence
+     * Test that the method returns a sentence.
      */
     public function testSentence()
     {
@@ -41,6 +41,9 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test that rangker method returns an array with keys matching a
+     * sentence word.
+     *
      * @throws \John\Exceptions\UrbanWordException
      */
     public function testWordCount()
@@ -50,6 +53,9 @@ class WordRankManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Assert that the ranker returns the occurence of words in the
+     * sentence.
+     *
      * @throws \John\Exceptions\UrbanWordException
      */
     public function testManageExpectation()
