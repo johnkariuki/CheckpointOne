@@ -12,6 +12,9 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
 {
     protected $urbanWords;
 
+    /**
+     * Create new instance of Urban word manager
+     */
     protected function setUp()
     {
         $this->urbanWords = new UrbanWordsManager();
@@ -54,6 +57,9 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Assert that when a duplicate urban word is added,
+     * an exception is thrown.
+     *
      * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word already exists.
      */
@@ -67,6 +73,8 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Assert that readWord returns an array.
+     *
      * @throws WordManagerException
      */
     public function testReadUrbanWord()
@@ -87,6 +95,9 @@ class UrbanWordsManagerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Assert that reading an empty word throws an
+     * exception.
+     *
      * @throws WordManagerException
      * @expectedException \John\Exceptions\WordManagerException
      * @expectedExceptionMessage Urban word omitted.
